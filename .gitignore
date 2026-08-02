@@ -1,0 +1,30 @@
+﻿# --- AI Automation Affiliate V3: files Git should never track ---
+
+# Secrets -- NEVER commit your real .env (it has your database
+# password, JWT signing keys, and will eventually have your eBay
+# credentials). Only .env.example (no real secrets) is tracked.
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Database / local data
+*.db
+*.sqlite3
+
+# OS / editor noise
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
