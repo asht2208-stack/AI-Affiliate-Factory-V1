@@ -91,7 +91,9 @@ class DatabaseSettings(BaseSettings):
     this file, keeping the codebase identical across environments.
     """
 
-    model_config = SettingsConfigDict(env_prefix="DB_")
+    model_config = SettingsConfigDict(
+        env_prefix="DB_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     dsn: PostgresDsn = Field(
         ...,
@@ -138,7 +140,9 @@ class SearchSettings(BaseSettings):
     here so query load never contends with transactional import writes.
     """
 
-    model_config = SettingsConfigDict(env_prefix="SEARCH_")
+    model_config = SettingsConfigDict(
+        env_prefix="SEARCH_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     hosts: list[AnyHttpUrl] = Field(
         ...,
@@ -168,7 +172,9 @@ class SearchSettings(BaseSettings):
 class CacheSettings(BaseSettings):
     """Configuration for the Redis cache/session/rate-limit layer."""
 
-    model_config = SettingsConfigDict(env_prefix="CACHE_")
+    model_config = SettingsConfigDict(
+        env_prefix="CACHE_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     dsn: RedisDsn = Field(..., description="Redis connection URL.")
     default_ttl_seconds: int = Field(
@@ -191,7 +197,9 @@ class ObjectStorageSettings(BaseSettings):
     """Configuration for S3-compatible object storage used for product
     images, backups, and the event-sourced import log."""
 
-    model_config = SettingsConfigDict(env_prefix="STORAGE_")
+    model_config = SettingsConfigDict(
+        env_prefix="STORAGE_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     endpoint_url: AnyHttpUrl = Field(
         ..., description="S3-compatible endpoint, e.g. https://s3.us-east-1.amazonaws.com"
@@ -216,7 +224,9 @@ class TaskQueueSettings(BaseSettings):
     """Configuration for the Celery-based background task system that
     drives feed imports, price updates, image processing, and retries."""
 
-    model_config = SettingsConfigDict(env_prefix="QUEUE_")
+    model_config = SettingsConfigDict(
+        env_prefix="QUEUE_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     broker_url: str = Field(
         ..., description="Message broker URL, e.g. redis://queue:6379/1 or amqp://..."
@@ -240,7 +250,9 @@ class SecuritySettings(BaseSettings):
     """Application-level security configuration: token signing, CORS,
     and rate limiting for public-facing endpoints."""
 
-    model_config = SettingsConfigDict(env_prefix="SECURITY_")
+    model_config = SettingsConfigDict(
+        env_prefix="SECURITY_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     jwt_signing_key: SecretStr = Field(
         ..., description="Secret key used to sign session/API JWTs."
@@ -279,7 +291,9 @@ class ConnectorSecuritySettings(BaseSettings):
     """Configuration governing how the Connector SDK resolves and
     handles per-merchant credentials."""
 
-    model_config = SettingsConfigDict(env_prefix="CONNECTOR_SECRETS_")
+    model_config = SettingsConfigDict(
+        env_prefix="CONNECTOR_SECRETS_", env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     backend: SecretsBackend = Field(default=SecretsBackend.ENV)
     vault_addr: Optional[AnyHttpUrl] = Field(default=None)
@@ -388,4 +402,3 @@ def get_settings() -> Settings:
         settings.app_name,
     )
     return settings
-
