@@ -48,6 +48,7 @@ from pydantic import BaseModel
 from app.api.routes.admin import router as admin_router
 from app.api.routes.products import router as products_router
 from app.api.routes.redirect import router as redirect_router
+from app.api.routes.web import router as web_router
 from app.connectors.registry import get_registry
 from app.core.config import get_settings
 from app.db.session import DatabaseUnavailableError, get_session_manager
@@ -138,6 +139,7 @@ app = create_app()
 app.include_router(products_router)
 app.include_router(redirect_router)
 app.include_router(admin_router)
+app.include_router(web_router)
 
 
 class RootResponse(BaseModel):
@@ -192,4 +194,3 @@ async def health() -> HealthResponse:
         database=database_status,
         checked_at=datetime.now(timezone.utc),
     )
-
