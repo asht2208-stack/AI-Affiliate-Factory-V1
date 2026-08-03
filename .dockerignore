@@ -1,0 +1,19 @@
+# --- AI Automation Affiliate V3: files excluded from the Docker build ---
+
+.git/
+.gitignore
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+.vscode/
+.idea/
+
+scripts/
+*.md
