@@ -44,9 +44,16 @@ COPY alembic.ini .
 ENV PORT=8000
 EXPOSE 8000
 
+# Without this, commands like `alembic` and `uvicorn` (installed as
+# standalone executables, not run via `python -m`) do not automatically
+# see the current directory on Python's import path -- causing
+# "ModuleNotFoundError: No module named 'app'" even though the app/
+# folder is right there. Setting PYTHONPATH explicitly fixes this for
+# every command in CMD below, not just one of them.
+ENV PYTHONPATH=/app
+
 # Run any pending database migrations, then start the server. Using
 # shell form (not exec form) specifically so $PORT is expanded by the
 # shell at container start -- exec form would pass the literal string
 # "$PORT" to uvicorn instead of its actual value.
 CMD alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
-
