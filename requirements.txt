@@ -9,6 +9,7 @@
 # --- Configuration (app/core/config.py) ---
 pydantic>=2.6,<3.0
 pydantic-settings>=2.2,<3.0
+email-validator>=2.1,<3.0
 
 # --- Database (app/db/session.py, app/db/models.py) ---
 sqlalchemy[asyncio]>=2.0,<2.1
@@ -38,4 +39,3 @@ passlib[bcrypt]>=1.7,<1.8
 
 # --- Coming soon: database migrations ---
 alembic>=1.13,<1.14
-
