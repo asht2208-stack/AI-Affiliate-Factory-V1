@@ -220,3 +220,4 @@ def get_registry() -> ConnectorRegistry:
     registry = ConnectorRegistry()
     registry.discover()
     return registry
+

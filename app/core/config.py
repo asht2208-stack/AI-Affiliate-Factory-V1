@@ -388,3 +388,4 @@ def get_settings() -> Settings:
         settings.app_name,
     )
     return settings
+

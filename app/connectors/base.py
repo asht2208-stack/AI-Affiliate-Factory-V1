@@ -371,3 +371,4 @@ class BaseConnector(abc.ABC):
 
     def __repr__(self) -> str:  # pragma: no cover - trivial
         return f"<{type(self).__name__} connector_key={self.connector_key!r}>"
+

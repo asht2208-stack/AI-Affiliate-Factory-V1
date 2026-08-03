@@ -221,3 +221,4 @@ async def get_db_session() -> AsyncIterator[AsyncSession]:
     manager = get_session_manager()
     async with manager.session() as session:
         yield session
+

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+<channel>
+<title>Sample Merchant Feed</title>
+<item>
+  <g:id>SKU-1001</g:id>
+  <title>Wireless Noise Cancelling Headphones</title>
+  <link>https://example-merchant.com/products/1001</link>
+  <description>Over-ear wireless headphones with active noise cancellation.</description>
+  <g:price>199.99 USD</g:price>
+  <g:brand>Aurora Audio</g:brand>
+  <g:gtin>012345678905</g:gtin>
+  <g:mpn>AA-WH-1001</g:mpn>
+  <g:image_link>https://example-merchant.com/images/1001-main.jpg</g:image_link>
+  <g:additional_image_link>https://example-merchant.com/images/1001-alt1.jpg</g:additional_image_link>
+  <g:additional_image_link>https://example-merchant.com/images/1001-alt2.jpg</g:additional_image_link>
+  <g:color>Black</g:color>
+  <g:availability>in stock</g:availability>
+  <g:product_type>Electronics &gt; Audio &gt; Headphones</g:product_type>
+</item>
+<item>
+  <g:id>SKU-1002</g:id>
+  <title>Stainless Steel Water Bottle 32oz</title>
+  <link>https://example-merchant.com/products/1002</link>
+  <description>Insulated stainless steel bottle, keeps drinks cold 24h.</description>
+  <g:price>24.50 USD</g:price>
+  <g:brand>HydroPeak</g:brand>
+  <g:gtin>4006381333931</g:gtin>
+  <g:image_link>https://example-merchant.com/images/1002-main.jpg</g:image_link>
+  <g:color>Matte Blue</g:color>
+  <g:availability>in stock</g:availability>
+  <g:product_type>Home &gt; Kitchen &gt; Drinkware</g:product_type>
+</item>
+<item>
+  <!-- Deliberately malformed item: missing price -->
+  <g:id>SKU-1003</g:id>
+  <title>Broken Item Missing Price</title>
+  <link>https://example-merchant.com/products/1003</link>
+</item>
+</channel>
+</rss>
+

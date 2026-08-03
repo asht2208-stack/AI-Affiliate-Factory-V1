@@ -1,0 +1,41 @@
+# --- AI Automation Affiliate V3: Python dependencies ---
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Grouped by what each dependency is used for, matching the
+# architecture layers we've built so far.
+
+# --- Configuration (app/core/config.py) ---
+pydantic>=2.6,<3.0
+pydantic-settings>=2.2,<3.0
+
+# --- Database (app/db/session.py, app/db/models.py) ---
+sqlalchemy[asyncio]>=2.0,<2.1
+asyncpg>=0.29,<0.30
+
+# --- Connectors (app/connectors/base.py, plugins) ---
+httpx>=0.27,<0.28
+
+# --- Coming soon: web framework for the public/admin API ---
+fastapi>=0.110,<0.111
+uvicorn[standard]>=0.29,<0.30
+
+# --- Coming soon: background jobs / scheduler ---
+celery>=5.4,<5.5
+redis>=5.0,<5.1
+
+# --- Coming soon: search index client ---
+opensearch-py>=2.5,<2.6
+
+# --- Images (app/services/image_service.py) ---
+pillow>=10.3,<10.4
+boto3>=1.34,<1.35
+
+# --- Coming soon: authentication ---
+pyjwt>=2.8,<2.9
+passlib[bcrypt]>=1.7,<1.8
+
+# --- Coming soon: database migrations ---
+alembic>=1.13,<1.14
+

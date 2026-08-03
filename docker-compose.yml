@@ -1,0 +1,32 @@
+# --- AI Automation Affiliate V3: local development database ---
+#
+# Starts a PostgreSQL server on your machine so the app has a real
+# database to connect to. Run with:
+#   docker compose up -d
+#
+# Stop with:
+#   docker compose down
+# (add -v to also delete the stored data: docker compose down -v)
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: affiliate_v3_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: affiliate_user
+      POSTGRES_PASSWORD: affiliate_pass
+      POSTGRES_DB: affiliate_v3
+    ports:
+      - "5432:5432"
+    volumes:
+      - affiliate_v3_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U affiliate_user -d affiliate_v3"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  affiliate_v3_pgdata:
+

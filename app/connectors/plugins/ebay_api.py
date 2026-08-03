@@ -1,8 +1,8 @@
-﻿"""
+"""
 app.connectors.plugins.ebay_api
 ==================================
 
-Connector for the eBay Browse API â€” the platform's first
+Connector for the eBay Browse API — the platform's first
 official-API-based connector (Priority 2 in the architecture, behind
 feeds), using OAuth2 client credentials authentication.
 
@@ -14,7 +14,7 @@ type. Consequently:
 
 * :meth:`import_products` requires at least one seed keyword or
   category ID to search against (via ``credentials.extra["seed_queries"]``
-  or ``credentials.extra["category_ids"]``) â€” it cannot enumerate "all
+  or ``credentials.extra["category_ids"]``) — it cannot enumerate "all
   eBay listings" the way a feed connector enumerates "all items in
   this file". This is a real constraint of the API, not an
   implementation shortcut.
@@ -23,18 +23,18 @@ type. Consequently:
   batch endpoint, since the Browse API has no bulk-by-ID lookup for
   this credential type.
 * :meth:`download_reviews` is unsupported (raises
-  :class:`~app.connectors.base.ConnectorPolicyViolationError`) â€” the
+  :class:`~app.connectors.base.ConnectorPolicyViolationError`) — the
   Browse API does not expose review data.
 
 Design notes
 ------------
 * OAuth token acquisition and refresh is handled internally
-  (:meth:`_ensure_valid_token`), called before every API request â€”
+  (:meth:`_ensure_valid_token`), called before every API request —
   callers never need to think about token lifetime.
 * Credentials (``app_id`` / ``cert_id``) are expected via
   :class:`~app.connectors.base.ConnectorCredentials`, which the import
   pipeline resolves from :class:`app.core.config.ConnectorSecuritySettings`
-  (env vars locally, Vault/Secrets Manager in production) â€” this
+  (env vars locally, Vault/Secrets Manager in production) — this
   module never reads environment variables directly.
 """
 
@@ -78,13 +78,13 @@ class EbayConnector(BaseConnector):
 
     Expects ``ConnectorCredentials.extra``:
 
-    * ``app_id`` (required) â€” eBay production App ID / Client ID.
-    * ``cert_id`` (required) â€” eBay production Cert ID / Client Secret.
+    * ``app_id`` (required) — eBay production App ID / Client ID.
+    * ``cert_id`` (required) — eBay production Cert ID / Client Secret.
     * ``marketplace_id`` (optional, default ``"EBAY_US"``).
-    * ``seed_queries`` (optional) â€” comma-separated search terms used
+    * ``seed_queries`` (optional) — comma-separated search terms used
       by :meth:`import_products` when no explicit query is given to
       :meth:`search`.
-    * ``campaign_id`` (optional) â€” eBay Partner Network campaign ID,
+    * ``campaign_id`` (optional) — eBay Partner Network campaign ID,
       used by :meth:`generate_affiliate_links` to build real
       commissioned links; without it, links are returned untagged.
     """
@@ -246,7 +246,7 @@ class EbayConnector(BaseConnector):
         catalog export for this credential type, so a full import
         means iterating ``credentials.extra["seed_queries"]``. If none
         were configured at authentication time, this yields nothing
-        and logs a warning rather than raising â€” an empty result set
+        and logs a warning rather than raising — an empty result set
         is a valid outcome for a connector with no seed queries
         configured yet, not necessarily an error condition.
         """
@@ -264,7 +264,7 @@ class EbayConnector(BaseConnector):
 
     async def update_prices(self, merchant_skus: list[str]) -> ImportResult:
         """Refresh price/availability for specific eBay item IDs via
-        the getItem endpoint â€” one request per SKU, since the Browse
+        the getItem endpoint — one request per SKU, since the Browse
         API has no batch-by-ID lookup for this credential type."""
         self._ensure_authenticated()
         result = ImportResult(started_at=datetime.now(timezone.utc))
@@ -385,3 +385,4 @@ class EbayConnector(BaseConnector):
                 "estimatedAvailabilityStatus"
             ),
         )
+

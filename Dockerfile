@@ -49,3 +49,4 @@ EXPOSE 8000
 # shell at container start -- exec form would pass the literal string
 # "$PORT" to uvicorn instead of its actual value.
 CMD alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
